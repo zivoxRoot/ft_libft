@@ -6,7 +6,7 @@
 /*   By: tdefeche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 12:52:53 by tdefeche          #+#    #+#             */
-/*   Updated: 2026/11/02 13:50:28 by tdefeche         ###   ########.fr       */
+/*   Updated: 2026/11/02 14:35:14 by tdefeche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*ft_memset(void *s, int c, size_t n)
 	i = 0;
 	while (i < n)
 	{
+		*(int *)s = c;
+		s++;
 		i++;
 	}
 
@@ -39,7 +41,7 @@ int	main(void)
 	}
 	printf("\n");
 
-	ft_memset(array, 0, 5);
+	ft_memset(array, 0, size);
 
 	length = 0;
 	while (length < 5)
