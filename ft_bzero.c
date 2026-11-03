@@ -6,29 +6,55 @@
 /*   By: tdefeche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 14:39:07 by tdefeche          #+#    #+#             */
-/*   Updated: 2026/11/02 14:42:21 by tdefeche         ###   ########.fr       */
+/*   Updated: 2026/11/03 09:17:19 by tdefeche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+// #include <stddef.h>
+
+void	*ft_memset(void *s, int c, size_t n)
+{
+	size_t			i;
+	unsigned char	*p;
+
+	i = 0;
+	p = (unsigned char *)s;
+	while (i < n)
+	{
+		*p = (unsigned char)c;
+		p++;
+		i++;
+	}
+	return (s);
+}
 
 void	bzero(void *s, size_t n)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < n)
-	{
-		*(char *)s = '\0';
-		i++;
-	}
+	ft_memset(s, 0, n);
 }
 
-#include <stdio.h>
-int	main(void)
-{
-	char	*str = "Bonjour";
-	printf("Before: %s\n", str);
-	bzero(str, 3);
-	printf("After: %s\n", str);
-}
+// #include <stdio.h>
+// int	main(void)
+// {
+// 	int		array[] = { 54, 85, 20, 63, 21 };
+// 	size_t	size = sizeof(int) * 5;
+// 	int		length;
+// 
+// 	length = 0;
+// 	while (length < 5)
+// 	{
+// 		printf("%d ", array[length]);
+// 		length++;
+// 	}
+// 	printf("\n");
+// 
+// 	bzero(array, size);
+// 
+// 	length = 0;
+// 	while (length < 5)
+// 	{
+// 		printf("%d ", array[length]);
+// 		length++;
+// 	}
+// 	printf("\n");
+// }
