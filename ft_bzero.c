@@ -28,7 +28,7 @@ void	*ft_memset(void *s, int c, size_t n)
 	return (s);
 }
 
-void	bzero(void *s, size_t n)
+void	ft_bezero(void *s, size_t n)
 {
 	ft_memset(s, 0, n);
 }
@@ -48,7 +48,7 @@ void	bzero(void *s, size_t n)
 // 	}
 // 	printf("\n");
 // 
-// 	bzero(array, size);
+// 	ft_bezero(array, size);
 // 
 // 	length = 0;
 // 	while (length < 5)
