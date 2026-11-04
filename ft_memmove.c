@@ -23,9 +23,9 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	s += n;
 	while (n > 0)
 	{
-		*d = *s;
 		d--;
 		s--;
+		*d = *s;
 		n--;
 	}
 	return (dest);
@@ -57,7 +57,7 @@ int	main(void)
 
 	void	*src = (void *)data;
 	void	*dst = (void *) (data + 1);  // We shift the destination by one
-	size_t	size = 10 * sizeof(int);
+	size_t	size = 9 * sizeof(int);
 	// memmove(dst, src, size);
 	ft_memmove(dst, src, size);
 
