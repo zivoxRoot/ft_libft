@@ -72,7 +72,6 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	temp->next = new;
 }
 
-// TODO: WTF?
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
 	del(lst->content);
@@ -89,28 +88,55 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	{
 		del(temp->content);
 		next = temp->next;
-		free(temp);  // TODO: fix this shit
+		free(temp);
+		temp = next;
+	}
+	lst = NULL;
+}
+
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	t_list	*temp;
+	t_list	*next;
+
+	temp = lst;
+	while (temp != NULL)
+	{
+		f(temp->content);
+		next = temp->next;
+		free(temp);
 		temp = next;
 	}
 }
 
-// void	ft_lstiter(t_list *lst, void (*f)(void *))
-// {
-// 	t_list	temp;
-// 
-// 	temp = lst;
-// 	while (temp->next != NULL)
-// 	{
-// 		f((void *)temp->content);
-// 		temp = temp->next;
-// 	}
-// }
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+{
+	t_list	*temp;
+	t_list	*new;
+	t_list	*last_new;
+	void	*current_content;
+
+	temp = lst;
+	while (temp != NULL)
+	{
+		// Run the function
+		current_content = f(temp->content);
+		// Create new
+		new = ft_lstnew(current_content);
+		// Attach to last known node
+		if (last_new)
+		{
+			last_new->next = new;
+		}
+		last_new = new;
+		temp = temp->next;
+	}
+}
 
 // Help function that deletes the content of an item
-void deleteItem(void *item)
+void deleteContent(void *item)
 {
-	t_list	*temp = (t_list *)item;
-	printf("=== DELETING item with value: %s\n", (char *)(temp->content));
+	printf("=== DELETING item with value: %s\n", (char *)item);
 }
 
 // Test function for string-based linked-list
@@ -128,6 +154,17 @@ void	ft_printlst(t_list *head)
 		temp = temp->next;
 	}
 	printf("NULL");
+}
+
+// Test function for iteration
+void	uselessFunction(void *item)
+{
+	printf("Someone sent me: %s\n", (char *)item);
+}
+
+void	*myFunction(void *item)
+{
+	return (void *)("Someone sent me: %s\n", (char *)item);
 }
 
 // Testing
@@ -190,15 +227,23 @@ int	main(void)
 	printf("\n\n");
 
 	// Delete last item
-	printf("--- DELETING LAST ITEM ---\n\n");
-	void	(*del)(void *) = deleteItem;
-	ft_lstdelone(new, del);
+	void	(*del)(void *) = deleteContent;
+
+	// NOTE: either if deleting items, no operations can be performed after because deletion doesn't handle pointers to the deleted item...
+	// printf("--- DELETING LAST ITEM ---\n\n");
+	// ft_lstdelone(new, del);
 
 	// Clears the list
-	// printf("--- CLEARS THE LIST ---\n\n");
-	// ft_lstclear(t, del);
+	// printf("--- CLEARING THE LIST ---\n\n");
+	// ft_lstclear(&t, del);
 
 	// Iterate over a list and launch a function on the items' content
 	// printf("--- ITERATING OVER THE LIST ---\n\n");
-	// ft_lstiter(t, del);
+	// void	(*f)(void *) = uselessFunction;
+	// ft_lstiter(t, f);
+
+	// Mapping over a list and launch a function on the items' content
+	printf("--- MAPPING OVER THE LIST ---\n\n");
+	void	*(*f)(void *) = myFunction;
+	ft_lstmap(t, f, del);
 }
