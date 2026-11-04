@@ -75,33 +75,36 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 // TODO: WTF?
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	del(lst);
+	del(lst->content);
 	free(lst);
 }
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_list	temp;
+	t_list	*temp;
+	t_list	*next;
 
 	temp = *lst;
-	while (temp->next != NULL)
+	while (temp != NULL)
 	{
 		del(temp->content);
-		temp = temp->next;
+		next = temp->next;
+		free(temp);  // TODO: fix this shit
+		temp = next;
 	}
 }
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
-{
-	t_list	temp;
-
-	temp = lst;
-	while (temp->next != NULL)
-	{
-		f((void *)temp->content);
-		temp = temp->next;
-	}
-}
+// void	ft_lstiter(t_list *lst, void (*f)(void *))
+// {
+// 	t_list	temp;
+// 
+// 	temp = lst;
+// 	while (temp->next != NULL)
+// 	{
+// 		f((void *)temp->content);
+// 		temp = temp->next;
+// 	}
+// }
 
 // Help function that deletes the content of an item
 void deleteItem(void *item)
@@ -114,7 +117,7 @@ void deleteItem(void *item)
 void	ft_printlst(t_list *head)
 {
 	t_list *temp = head;
-	if (temp = NULL)
+	if (temp == NULL)
 	{
 		printf("Empty linked list\n");
 		return ;
@@ -190,13 +193,12 @@ int	main(void)
 	printf("--- DELETING LAST ITEM ---\n\n");
 	void	(*del)(void *) = deleteItem;
 	ft_lstdelone(new, del);
-	// NOTE: Is it normal that this operation seems to not work? It doesn't update the pointer of the last item so it seem logical that it crashes on the next print...
 
 	// Clears the list
-	printf("--- CLEARS THE LIST ---\n\n");
-	ft_lstclear(t, del);
+	// printf("--- CLEARS THE LIST ---\n\n");
+	// ft_lstclear(t, del);
 
 	// Iterate over a list and launch a function on the items' content
-	printf("--- ITERATING OVER THE LIST ---\n\n");
-	ft_lstiter(t, del);
+	// printf("--- ITERATING OVER THE LIST ---\n\n");
+	// ft_lstiter(t, del);
 }
