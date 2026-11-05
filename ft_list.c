@@ -1,9 +1,7 @@
-// Test file for linked list
-// TODO: extract everything to individual files once it works
-
-#include <stddef.h>
 #include <stdlib.h>
+#include <stddef.h>
 #include <stdio.h>
+#include <string.h>
 
 typedef struct		s_list
 {
@@ -19,7 +17,6 @@ t_list	*ft_lstnew(void *content)
 	// Allocation error
 	if (!t)
 	{
-		printf("Error allocating memory\n");
 		return (NULL);
 	}
 	t->content = content;
@@ -29,6 +26,8 @@ t_list	*ft_lstnew(void *content)
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
+	if (!lst || !new)
+		return ;
 	new->next = *lst;
 	*lst = new;
 }
@@ -40,7 +39,7 @@ unsigned int	ft_lstsize(t_list *lst)
 
 	i = 0;
 	temp = lst;
-	while (temp != NULL)
+	while (temp)
 	{
 		i++;
 		temp = temp->next;
@@ -52,8 +51,10 @@ t_list	*ft_lstlast(t_list *lst)
 {
 	t_list	*temp;
 
+	if (!lst)
+		return (NULL);
 	temp = lst;
-	while (temp->next != NULL)
+	while (temp->next)
 	{
 		temp = temp->next;
 	}
@@ -62,18 +63,26 @@ t_list	*ft_lstlast(t_list *lst)
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*temp;
+	t_list	*current_last;
 
-	temp = *lst;
-	while (temp->next != NULL)
+	// Empty
+	if (!lst || !new)
+		return ;
+	// List has no node
+	if (!(*lst))
 	{
-		temp = temp->next;
+		*lst = new;
+		return ;
 	}
-	temp->next = new;
+	// Otherwise add note at the back
+	current_last = ft_lstlast(*lst);
+	current_last->next = new;
 }
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
+	if (!lst || !del)
+		return ;
 	del(lst->content);
 	free(lst);
 }
@@ -83,54 +92,58 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	t_list	*temp;
 	t_list	*next;
 
+	if (!lst || !del)
+		return ;
 	temp = *lst;
-	while (temp != NULL)
+	while (temp)
 	{
 		del(temp->content);
 		next = temp->next;
 		free(temp);
 		temp = next;
 	}
-	lst = NULL;
+	*lst = NULL;
 }
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	t_list	*temp;
-	t_list	*next;
 
+	if (!lst || !f)
+		return ;
 	temp = lst;
-	while (temp != NULL)
+	while (temp)
 	{
 		f(temp->content);
-		next = temp->next;
-		free(temp);
-		temp = next;
+		temp = temp->next;
 	}
 }
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
+	t_list	*new_list;
 	t_list	*temp;
-	t_list	*new;
-	t_list	*last_new;
-	void	*current_content;
+	t_list	*new_node;
+	void	*content;
 
+	if (!lst || !f || !del)
+		return (NULL);
+	new_list = NULL;
 	temp = lst;
-	while (temp != NULL)
+	while (temp)
 	{
-		// Run the function
-		current_content = f(temp->content);
-		// Create new
-		new = ft_lstnew(current_content);
-		// Attach to last known node
-		if (last_new)
+		content = f(temp->content);
+		new_node = ft_lstnew(content);
+		if (new_node == NULL)
 		{
-			last_new->next = new;
+			del(content);
+			ft_lstclear(&new_list, del);
+			return (NULL);
 		}
-		last_new = new;
+		ft_lstadd_back(&new_list, new_node);
 		temp = temp->next;
 	}
+	return (new_list);
 }
 
 // Help function that deletes the content of an item
@@ -148,7 +161,7 @@ void	ft_printlst(t_list *head)
 		printf("Empty linked list\n");
 		return ;
 	}
-	while (temp != NULL)
+	while (temp)
 	{
 		printf("%s -> ", (char *)(temp->content));
 		temp = temp->next;
@@ -164,7 +177,7 @@ void	uselessFunction(void *item)
 
 void	*myFunction(void *item)
 {
-	return (void *)("Someone sent me: %s\n", (char *)item);
+	return (strdup((char *)item));
 }
 
 // Testing
@@ -245,5 +258,9 @@ int	main(void)
 	// Mapping over a list and launch a function on the items' content
 	printf("--- MAPPING OVER THE LIST ---\n\n");
 	void	*(*f)(void *) = myFunction;
-	ft_lstmap(t, f, del);
+	t_list	*mapped = ft_lstmap(t, f, del);
+	printf("--- MAPPED OVER ---\n");
+	ft_lstclear(&t, del);
+	ft_printlst(mapped);
+	ft_lstclear(&mapped, free);
 }
