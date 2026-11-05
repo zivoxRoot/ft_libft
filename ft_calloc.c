@@ -10,61 +10,79 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include <stdlib.h>
-#include <stdio.h>
+// #include <stddef.h>
+// #include <stdio.h>
 
-void	*calloc(size_t nmemb, size_t size)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	unsigned long	alloc_size;
-	void			*res;
-	int				i;
+	size_t			i;
+	unsigned char	*p;
+
+	i = 0;
+	p = (unsigned char *)s;
+	while (i < n)
+	{
+		*p = (unsigned char)c;
+		p++;
+		i++;
+	}
+	return (s);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	ft_memset(s, 0, n);
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	size_t	alloc_size;
+	void	*res;
 
 	if (nmemb == 0 || size == 0)
 		return (malloc(1));
 	alloc_size = nmemb * size;
-	if (alloc_size > 2147483647)
-	{
-		printf("Error: value overflows INT MAX\n");
-		return (NULL);
-	}
+	// TODO: Do I need to handle this?
+	// if (alloc_size > 2147483647)
+	// {
+	// 	printf("Error: value overflows INT MAX\n");
+	// 	return (NULL);
+	// }
 	res = malloc(alloc_size);
-	i = 0;
-	while (i < (int)alloc_size)  // TODO: Use bzero
-	{
-		res[i] = 0;
-	}
+	ft_bzero(res, alloc_size);
 	return (res);
 }
 
-int	main(void)
-{
-	int i;
-	int * pointer = (int *) calloc(10, sizeof(int) );
+// int	main(void)
+// {
+	// int i;
+	// int * pointer = (int *) calloc(10, sizeof(int) );
+	// int * pointer = (int *) ft_calloc(10, sizeof(int) );
 
 	/* Un petit test sur le bon fonctionnement de calloc */
-	if (pointer == NULL)
-	{
-		printf("Error mallocating...\n");
-		return 1;
-	}
+	// if (pointer == NULL)
+	// {
+	// 	printf("Error mallocating...\n");
+	// 	return 1;
+	// }
 
 	/* Le dernier élément du tableau ne sera pas affecté par la */
 	/* boucle mais n'oubliez pas que calloc initialise de toute */
 	/* façon à 0 chaque octet. */
-	for ( i=0; i<10-1; i++ ) {
-		pointer[i] = i;
-	}
+	// for ( i=0; i<10-1; i++ ) {
+	// 	pointer[i] = i;
+	// }
 
 	/* On affiche le contenu du tableau d'entier */
 	/* Ce qui donne : 0 1 2 3 4 5 6 7 8 0 */
-	for (i=0; i<10; i++ ) {
-		printf( "%d ", pointer[i] );
-	}
-	printf( "\n" );
+	// for (i=0; i<10; i++ ) {
+	// 	printf( "%d ", pointer[i] );
+	// }
+	// printf( "\n" );
 
 	/* On libère le bloc de mémoire alloué dynamiquement */
-	free( pointer );
+	// free( pointer );
 
-	return 0;
-}
+	// return 0;
+// }
