@@ -37,19 +37,15 @@ void	ft_bzero(void *s, size_t n)
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	size_t	alloc_size;
 	void	*res;
 
 	if (nmemb == 0 || size == 0)
 		return (malloc(1));
-	alloc_size = nmemb * size;
-	// TODO: Do I need to handle this?
-	// if (alloc_size > 2147483647)
-	// {
-	// 	printf("Error: value overflows INT MAX\n");
-	// 	return (NULL);
-	// }
-	res = malloc(alloc_size);
+	if (nmemb > 2147483647 / size)
+		return (NULL);
+	res = malloc(nmemb * size);
+	if (!res)
+		return (NULL);
 	ft_bzero(res, alloc_size);
 	return (res);
 }
