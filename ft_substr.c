@@ -6,48 +6,36 @@
 /*   By: tdefeche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 15:15:18 by tdefeche          #+#    #+#             */
-/*   Updated: 2026/11/06 10:04:51 by tdefeche         ###   ########.fr       */
+/*   Updated: 2026/11/06 12:20:41 by tdefeche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
 #include <stddef.h>
-#include <stdio.h>
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	unsigned int 	i;
-	unsigned int 	size;
-	char	*sub;
+	char	*res;
+	unsigned int i;
+	size_t y;
 
+	res = (char *)malloc((len + 1) * sizeof(char));
+	if (!res)
+		return (NULL);
 	i = 0;
-	size = 0;
-	// Get to the start
 	while (i < start)
-	{
 		i++;
-	}
-	// Get length of substring
-	while (s[size] && size < len)
+	y = 0;
+	while (y < len)
 	{
-		size++;
+		res[y] = s[i + y];
+		y++;
 	}
-
-	// Allocate size
-	sub = (char *)malloc(sizeof(char) * size);
-
-	// Copy
-	while (s[i] && i < size)
-	{
-		sub[i - size] = s[i];
-		i++;
-	}
-
-	printf("-- %s\n", sub);
-
-	return (sub);
+	res[y] = '\0';
+	return (res);
 }
 
+// #include <stdio.h>
 // int	main(void)
 // {
 // 	char *const str = "Salut tout le monde";
