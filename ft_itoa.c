@@ -6,7 +6,7 @@
 /*   By: tdefeche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/06 12:22:59 by tdefeche          #+#    #+#             */
-/*   Updated: 2026/11/06 12:57:47 by tdefeche         ###   ########.fr       */
+/*   Updated: 2026/11/06 13:13:06 by tdefeche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,24 @@ char	*reverse_str(char *s)
 	return (s);
 }
 
+int	get_nb_size(int n)
+{
+	int	nb_size;
+
+	nb_size = 0;
+	if (n < 0)
+	{
+		n *= -1;
+		nb_size++;
+	}
+	while (n > 0)
+	{
+		n /= 10;
+		nb_size++;
+	}
+	return (nb_size);
+}
+
 char	*ft_itoa(int n)
 {
 	int		tmp;
@@ -54,21 +72,13 @@ char	*ft_itoa(int n)
 
 	tmp = n;
 	sign = 1;
-	nb_size = 0;
 	if (n == -2147483648)
 		return ("-2147483648");
-	// Get nb of chars needed
-	while (tmp > 0)
-	{
-		tmp /= 10;
-		nb_size++;
-	}
-	// Get sign
+	nb_size = get_nb_size(n);
 	if (n < 0)
 	{
 		sign = -1;
-		n *= -1;
-		nb_size++;
+		n = -n;
 	}
 	// Malloc size
 	res = (char *)malloc((nb_size + 1) * sizeof(char));
@@ -76,15 +86,15 @@ char	*ft_itoa(int n)
 		return (NULL);
 	// Copy and convert
 	i = 0;
-	if (sign == -1)
-	{
-		res[i] = '-';
-		i++;
-	}
 	while (n > 0)
 	{
 		res[i] = (n % 10) + 48;
 		n /= 10;
+		i++;
+	}
+	if (sign == -1)
+	{
+		res[i] = '-';
 		i++;
 	}
 	res[i] = '\0';
@@ -93,6 +103,6 @@ char	*ft_itoa(int n)
 
 int	main(void)
 {
-	int	number = 3290390;
+	int	number = -3290390;
 	printf("%s\n", ft_itoa(number));
 }
