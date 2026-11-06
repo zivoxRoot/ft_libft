@@ -6,24 +6,24 @@
 /*   By: tdefeche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/06 12:22:59 by tdefeche          #+#    #+#             */
-/*   Updated: 2026/11/06 13:13:06 by tdefeche         ###   ########.fr       */
+/*   Updated: 2026/11/06 13:17:16 by tdefeche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
+// #include <stdio.h>
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-	{
-		i++;
-	}
-	return (i);
-}
+// size_t	ft_strlen(const char *s)
+// {
+// 	size_t	i;
+// 
+// 	i = 0;
+// 	while (s[i])
+// 	{
+// 		i++;
+// 	}
+// 	return (i);
+// }
 
 char	*reverse_str(char *s)
 {
@@ -62,29 +62,10 @@ int	get_nb_size(int n)
 	return (nb_size);
 }
 
-char	*ft_itoa(int n)
+void	complete(int n, int sign, char *res)
 {
-	int		tmp;
-	int		nb_size;
-	char	*res;
 	int		i;
-	int		sign;
 
-	tmp = n;
-	sign = 1;
-	if (n == -2147483648)
-		return ("-2147483648");
-	nb_size = get_nb_size(n);
-	if (n < 0)
-	{
-		sign = -1;
-		n = -n;
-	}
-	// Malloc size
-	res = (char *)malloc((nb_size + 1) * sizeof(char));
-	if (!res)
-		return (NULL);
-	// Copy and convert
 	i = 0;
 	while (n > 0)
 	{
@@ -98,11 +79,34 @@ char	*ft_itoa(int n)
 		i++;
 	}
 	res[i] = '\0';
+}
+
+char	*ft_itoa(int n)
+{
+	int		tmp;
+	int		nb_size;
+	char	*res;
+	int		sign;
+
+	tmp = n;
+	sign = 1;
+	if (n == -2147483648)
+		return ("-2147483648");
+	nb_size = get_nb_size(n);
+	if (n < 0)
+	{
+		sign = -1;
+		n = -n;
+	}
+	res = (char *)malloc((nb_size + 1) * sizeof(char));
+	if (!res)
+		return (NULL);
+	complete(n, sign, res);
 	return (reverse_str(res));
 }
 
-int	main(void)
-{
-	int	number = -3290390;
-	printf("%s\n", ft_itoa(number));
-}
+// int	main(void)
+// {
+// 	int	number = -3290390;
+// 	printf("%s\n", ft_itoa(number));
+// }
