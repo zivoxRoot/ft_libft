@@ -7,7 +7,7 @@
 This C library is a rebuild of some functions from different standard C libraries. They are meant to behave exactly the same as their counterpart and be used to build other projects later in the curriculum.
 
 > [!NOTE]
-> All functions start with `ft_` before their name, so you will find them in the corresponding `ft_{function name}.c` file
+> All functions name are prefixed with `ft_` before their name, so you will find them in the corresponding `ft_{function name}.c` file
 
 <details>
 <summary>Functions list sorted by category:</summary>
@@ -17,7 +17,7 @@ This C library is a rebuild of some functions from different standard C librarie
 **Characters related**
 |Function          |Goal                                                  |
 |------------------|------------------------------------------------------|
-|isalpha           |Verify if a character is alphabetical [a-zA-Z]         |
+|isalpha           |Verify if a character is alphabetical [a-zA-Z]        |
 |isdigit           |Verify if a character is a digit [0-9]                |
 |isalnum           |The combination of the two previous functions         |
 |isascii           |Verify if a character is part of the ascii table      |
@@ -34,14 +34,14 @@ This C library is a rebuild of some functions from different standard C librarie
 |strchr            |Returns the first occurance of a character in a string|
 |strrchr           |Returns the last occurance of a character in a string |
 |strncmp           |Compare two strings                                   |
-|strdup            |Returns a duplicate of a string                       |
+|strdup            |Returns a freeable duplicate of a string              |
 
 **Memory related**
 |Function          |Goal                                                  |
 |------------------|------------------------------------------------------|
 |memset            |Fills a memory area with a constant byte              |
 |bzero             |Fills a memory area with 0s                           |
-|memcpy            |Copies a memory areainto another one                  |
+|memcpy            |Copies a memory area into another one                 |
 |memmove           |Same as memcpy but handles overlapping memory areas   |
 |memcmp            |Compare two memory areas                              |
 |calloc            |The `calloc` function: allocate a memory area with 0s |
@@ -112,12 +112,20 @@ cc -Wall -Wextra -Werror -g main.c -L. -lft -lbsd -o test
 
 ## Ressources
 
+An unsorted list of useful websites and articles
+- [Makefile explanation & example](https://linuxvox.com/blog/makefile-linux-c-example)
+- [Creating a static library in C](https://www.geeksforgeeks.org/c/how-do-i-create-a-library-in-c)
+- [Documentation on standard functions & examples of usage](https://koor.fr/C/cstring/memmove.wp) (useful for testing)
+
 ## Testing
 
 You can easily test this library by copying the following `main.c` and following the instructions in the [instructions section](#instructions).
 
+>[!NOTE]
+> This test file is big and ugly but should be understandble and can be easily edited to test different edge cases
+
 <details>
-<summary>main.c for testing</summary>
+<summary>main.c</summary>
 ```c
 #include <stdio.h>
 #include <string.h>
