@@ -10,7 +10,7 @@ This C library is a rebuild of some functions from different standard C librarie
 > All functions name are prefixed with `ft_`, you will find them in the corresponding `ft_{function name}.c` file
 
 <details>
-<summary>Functions list sorted by category:</summary>
+<summary>Functions list sorted by category</summary>
 
 ### Libc functions
 
@@ -74,7 +74,7 @@ This C library is a rebuild of some functions from different standard C librarie
 
 > For instructions on how to evaluate or test this project, refer to the [testing section](#testing).
 
-1. To use this library you must first clone the repository:
+1. To use this library first clone the repository:
 ```bash
 git clone --depth=1 https://github.com/zivoxRoot/ft_libft.git $HOME/ft_libft
 cd $HOME/ft_libft
