@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <stddef.h>
+#include <stddef.h>
+
+#include "libft.h"
 
 size_t	get_size(const char *str)
 {
