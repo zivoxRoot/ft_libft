@@ -10,11 +10,11 @@ This C library is a rebuild of some functions from different standard C librarie
 > All functions start with `ft_` before their name, so you will find them in the corresponding `ft_{function name}.c` file
 
 <details>
-<summary>These functions can be stored in different categories:</summary>
+<summary>Functions list sorted by category:</summary>
 
 ### Libc functions
 
-**Characters-related functions**
+**Characters related**
 |Function          |Goal                                                  |
 |------------------|------------------------------------------------------|
 |isalpha           |Verify if a character is alphabetical [a-zA-Z]         |
@@ -25,7 +25,7 @@ This C library is a rebuild of some functions from different standard C librarie
 |toupper           |Put a lowercase character in uppercase                |
 |tolower           |Put an uppercase character in lowercase               |
 
-**String-related functions**
+**String related**
 |Function          |Goal                                                  |
 |------------------|------------------------------------------------------|
 |strlen            |Returns the length of a string                        |
@@ -36,7 +36,7 @@ This C library is a rebuild of some functions from different standard C librarie
 |strncmp           |Compare two strings                                   |
 |strdup            |Returns a duplicate of a string                       |
 
-**Memory-related functions**
+**Memory related**
 |Function          |Goal                                                  |
 |------------------|------------------------------------------------------|
 |memset            |Fills a memory area with a constant byte              |
@@ -46,7 +46,7 @@ This C library is a rebuild of some functions from different standard C librarie
 |memcmp            |Compare two memory areas                              |
 |calloc            |The `calloc` function: allocate a memory area with 0s |
 
-**Other functions**
+**Other**
 |Function          |Goal                                                  |
 |------------------|------------------------------------------------------|
 |atoi              |convert an int to a string                            |
@@ -87,7 +87,9 @@ make
 
 Now you can import the `libft.h` file and compile with the generated `libft.a`:
 
-```clang
+```c
+// Example main.c
+
 #include <stdio.h>
 
 #include "libft.h"
@@ -115,8 +117,8 @@ cc -Wall -Wextra -Werror -g main.c -L. -lft -lbsd -o test
 You can easily test this library by copying the following `main.c` and following the instructions in the [instructions section](#instructions).
 
 <details>
-<summary>`main.c`</summary>
-```clang
+<summary>main.c for testing</summary>
+```c
 #include <stdio.h>
 #include <string.h>
 #include <bsd/string.h>
