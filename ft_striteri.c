@@ -30,14 +30,14 @@ void	my_function(unsigned int n, char *c)
 	{
 		if (*c > 96 && *c < 123)
 			*c -= 32;
-		if (*c > 64 && *c < 91)
+		else if (*c > 64 && *c < 91)
 			*c += 32;
 	}
 }
 
 int	main(void)
 {
-	char	*str = "Salut je suis cool";
+	char	str[] = "Salut je suis cool";
 	void 	(*f)(unsigned int, char*) = my_function;
 	ft_striteri(str, f);
 	printf("%s\n", str);
