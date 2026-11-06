@@ -6,11 +6,13 @@
 /*   By: tdefeche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 12:52:53 by tdefeche          #+#    #+#             */
-/*   Updated: 2026/11/03 09:13:09 by tdefeche         ###   ########.fr       */
+/*   Updated: 2026/11/06 09:36:00 by tdefeche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <stddef.h>
+#include <stddef.h>
+
+#include "libft.h"
 
 void	*ft_memset(void *s, int c, size_t n)
 {

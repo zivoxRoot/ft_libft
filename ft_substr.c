@@ -6,7 +6,7 @@
 /*   By: tdefeche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 15:15:18 by tdefeche          #+#    #+#             */
-/*   Updated: 2026/11/02 15:33:01 by tdefeche         ###   ########.fr       */
+/*   Updated: 2026/11/06 10:04:51 by tdefeche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (sub);
 }
 
-int	main(void)
-{
-	char *const str = "Salut tout le monde";
-	printf("Original: %s\n", str);
-	printf("Substring: %s\n", ft_substr(str, 6, 4));
-}
+// int	main(void)
+// {
+// 	char *const str = "Salut tout le monde";
+// 	printf("Original: %s\n", str);
+// 	printf("Substring: %s\n", ft_substr(str, 6, 4));
+// }
