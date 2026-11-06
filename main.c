@@ -2,6 +2,7 @@
 #include <string.h>
 #include <bsd/string.h>
 #include <stddef.h>
+#include <stdlib.h>
 
 #include "libft.h"
 
