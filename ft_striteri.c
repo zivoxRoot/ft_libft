@@ -12,6 +12,8 @@
 
 #include <stdio.h>
 
+#include "libft.h"
+
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
 	unsigned int	i;
@@ -35,10 +37,10 @@ void	my_function(unsigned int n, char *c)
 	}
 }
 
-int	main(void)
-{
-	char	str[] = "Salut je suis cool";
-	void 	(*f)(unsigned int, char*) = my_function;
-	ft_striteri(str, f);
-	printf("%s\n", str);
-}
+// int	main(void)
+// {
+// 	char	str[] = "Salut je suis cool";
+// 	void 	(*f)(unsigned int, char*) = my_function;
+// 	ft_striteri(str, f);
+// 	printf("%s\n", str);
+// }

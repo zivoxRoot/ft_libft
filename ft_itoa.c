@@ -11,6 +11,9 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+
+#include "libft.h"
+
 // #include <stdio.h>
 
 // size_t	ft_strlen(const char *s)
@@ -83,12 +86,10 @@ void	complete(int n, int sign, char *res)
 
 char	*ft_itoa(int n)
 {
-	int		tmp;
 	int		nb_size;
 	char	*res;
 	int		sign;
 
-	tmp = n;
 	sign = 1;
 	if (n == -2147483648)
 		return ("-2147483648");

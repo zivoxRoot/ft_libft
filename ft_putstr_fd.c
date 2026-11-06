@@ -17,6 +17,8 @@
 // 	write(fd, &c, 1);
 // }
 
+#include "libft.h"
+
 void	ft_putstr_fd(char *s, int fd)
 {
 	while (*s)

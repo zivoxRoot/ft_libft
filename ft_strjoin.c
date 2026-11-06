@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -46,10 +47,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 // TODO: this function is three line too big
 
 #include <stdio.h>
-int	main(void)
-{
-	const char *s1 = "Salut je suis sympa...";
-	const char *s2 = " Et j'aime les pommes";
-
-	printf("%s\n", ft_strjoin(s1, s2));
-}
+// int	main(void)
+// {
+// 	const char *s1 = "Salut je suis sympa...";
+// 	const char *s2 = " Et j'aime les pommes";
+// 
+// 	printf("%s\n", ft_strjoin(s1, s2));
+// }

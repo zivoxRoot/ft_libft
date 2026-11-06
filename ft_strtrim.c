@@ -51,6 +51,8 @@
 // 	return (res);
 // }
 
+#include "libft.h"
+
 int	is_set(char c, char const *set)
 {
 	int	set_index;

@@ -3,12 +3,7 @@
 
 # include <stddef.h>
 
-// Linked list
-typedef struct		s_list
-{
-	void			*content;
-	struct s_list	*next;
-}					t_list;
+// PART 3: Libc functions
 
 // Characters
 int		ft_isalpha(int c);
@@ -40,5 +35,27 @@ void	*ft_calloc(size_t nmemb, size_t size);
 
 // Other
 int		ft_atoi(const char *nptr);
+
+// PART 2: Additional functions
+
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strtrim(char const *s1, char const *set);
+char	**ft_split(char const *s, char c);
+char	*ft_itoa(int n);
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putendl_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
+
+// PART 3: Linked list
+
+typedef struct		s_list
+{
+	void			*content;
+	struct s_list	*next;
+}					t_list;
 
 # endif

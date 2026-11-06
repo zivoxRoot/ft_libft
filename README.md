@@ -439,7 +439,7 @@ int	main(void)
 			return 1;
 		}
 
-		// We don't set the last item of the array, but calloc sets its at 0
+		// We don't set the last item of the array, but calloc sets its at 0 
 		while (i < 9)
 		{
 			pointer[i] = i;
@@ -473,6 +473,88 @@ int	main(void)
 	printf("### PART 2: Additional functions ###\n");
 	printf("######################################\n");
 
+	printf("\n=== Testing substr\n");
+	{
+		char *const str = "Salut tout le monde";
+		printf("Original: %s\n", str);
+		printf("Substring: %s\n", ft_substr(str, 6, 4));
+	}
+
+	printf("\n=== Testing strjoin\n");
+	{
+		const char *s1 = "Salut je suis sympa...";
+		const char *s2 = " Et j'aime les pommes";
+		printf("%s\n", ft_strjoin(s1, s2));
+	}
+
+	printf("\n=== Testing strtrim\n");
+	{
+		const char	*str = "      2xChaine finale je pense...xx  22";
+		const char	*set = " x2";
+		printf("%s\n", ft_strtrim(str, set));
+	}
+
+	printf("\n=== Testing split\n");
+	{
+		char	*str = "Salut, je suis, content d'extre la.";
+		char	sep = ',';
+		char	**res;
+		res = ft_split(str, sep);
+		int i = 0;
+		while (res[i])
+		{
+			printf("- %s\n", res[i]);
+			i++;
+		}
+		free(res);
+	}
+
+	printf("\n=== Testing itoa\n");
+	{
+		int	number = -3290390;
+		printf("%s\n", ft_itoa(number));
+	}
+
+	printf("\n=== Testing strmapi\n");
+	{
+		char	*str = "Salut je suis cool";
+		char 	(*f)(unsigned int, char) = my_function;
+		printf("%s\n", ft_strmapi(str, f));
+	}
+
+	printf("\n=== Testing striteri\n");
+	{
+		char	str[] = "Salut je suis cool";
+		void 	(*f)(unsigned int, char*) = my_function;
+		ft_striteri(str, f);
+		printf("%s\n", str);
+	}
+
+	printf("\n=== Testing putchar fd\n");
+	{
+		ft_putchar_fd('S', 1);
+		ft_putchar_fd('a', 1);
+		ft_putchar_fd('l', 1);
+		ft_putchar_fd('u', 1);
+		ft_putchar_fd('t', 1);
+		ft_putchar_fd('\n', 1);
+	}
+
+	printf("\n=== Testing putstr fd\n");
+	{
+		ft_putstr_fd("Salut comment ca va ?\n", 1);
+	}
+
+	printf("\n=== Testing putendl fd\n");
+	{
+		ft_putendl_fd("Salut comment ca va ?", 1);
+	}
+
+	printf("\n=== Testing putnbr fd\n");
+	{
+		ft_putnbr_fd(4329049, 1);
+		write(1, "\n", 1);
+	}
 	return (0);
 }
 ```
