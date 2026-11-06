@@ -7,7 +7,7 @@
 This C library is a rebuild of some functions from different standard C libraries. They are meant to behave exactly the same as their counterpart and be used to build other projects later in the curriculum.
 
 > [!NOTE]
-> All functions name are prefixed with `ft_` before their name, so you will find them in the corresponding `ft_{function name}.c` file
+> All functions name are prefixed with `ft_`, you will find them in the corresponding `ft_{function name}.c` file
 
 <details>
 <summary>Functions list sorted by category:</summary>
@@ -74,18 +74,18 @@ This C library is a rebuild of some functions from different standard C librarie
 
 > For instructions on how to evaluate or test this project, refer to the [testing section](#testing).
 
-To use this library you must first clone the repository:
+1. To use this library you must first clone the repository:
 ```bash
 git clone --depth=1 https://github.com/zivoxRoot/ft_libft.git $HOME/ft_libft
 cd $HOME/ft_libft
 ```
 
-Then build the library locally:
+2. Then build the library locally:
 ```bash
 make
 ```
 
-Now you can import the `libft.h` file and compile with the generated `libft.a`:
+3. Now you can import the `libft.h` file and compile with the generated `libft.a`:
 
 ```c
 // Example main.c
