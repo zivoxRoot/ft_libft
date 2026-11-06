@@ -125,8 +125,9 @@ You can easily test this library by copying the following `main.c` and following
 > This test file is big and ugly but should be understandble and can be easily edited to test different edge cases
 
 <details>
-<summary>main.c</summary>
-```c
+<summary>
+`main.c`
+</summary>
 #include <stdio.h>
 #include <string.h>
 #include <bsd/string.h>
@@ -474,5 +475,4 @@ int	main(void)
 
 	return (0);
 }
-```
 </details>
