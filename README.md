@@ -125,11 +125,7 @@ You can easily test this library by copying the following `main.c` and following
 > This test file is big and ugly but should be understandble and can be easily edited to test different edge cases
 
 <details>
-<summary>
-
-`main.c`
-
-</summary>
+<summary></code>main.c</code></summary>
 
 ```c
 #include <stdio.h>
