@@ -12,7 +12,7 @@ This C library is a rebuild of some functions from different standard C librarie
 <details>
 <summary>These functions can be stored in different categories:</summary>
 
-## Standard library
+### Libc functions
 
 **Characters-related functions**
 |Function          |Goal                                                  |
@@ -51,7 +51,7 @@ This C library is a rebuild of some functions from different standard C librarie
 |------------------|------------------------------------------------------|
 |atoi              |convert an int to a string                            |
 
-## Additional functions
+### Additional functions
 
 <!-- TODO: add them and the linked list -->
 
@@ -61,7 +61,7 @@ This C library is a rebuild of some functions from different standard C librarie
 |isalpha           |Verify if a character is alphabetical [az-AZ]         |
 |isdigit           |Verify if a character is a digit [0-9]                |
 
-## Linked list
+### Linked list
 
 **Characters-related functions**
 |Function          |Goal                                                  |
