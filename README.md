@@ -126,8 +126,12 @@ You can easily test this library by copying the following `main.c` and following
 
 <details>
 <summary>
+
 `main.c`
+
 </summary>
+
+```c
 #include <stdio.h>
 #include <string.h>
 #include <bsd/string.h>
@@ -475,4 +479,6 @@ int	main(void)
 
 	return (0);
 }
+```
+
 </details>
