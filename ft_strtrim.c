@@ -34,6 +34,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	unsigned int	end;
 
 	start = 0;
+	if (!s1)
+		return ("");
 	while (s1[start])
 	{
 		if (!is_set(s1[start], set))
@@ -41,11 +43,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		start++;
 	}
 	end = ft_strlen(s1);
-	while (s1[end - 1])
-	{
-		if (!is_set(s1[end - 1], set))
-			break ;
+	while (end > start && is_set(s1[end - 1], set))
 		end--;
-	}
 	return (ft_substr(s1, start, end - start));
 }
