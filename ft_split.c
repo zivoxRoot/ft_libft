@@ -6,7 +6,7 @@
 /*   By: tdefeche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/06 11:28:07 by tdefeche          #+#    #+#             */
-/*   Updated: 2026/11/06 12:21:11 by tdefeche         ###   ########.fr       */
+/*   Updated: 2026/11/09 09:40:22 by tdefeche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,22 @@ static int	get_nb_words(char const *s, char c)
 {
 	int	res;
 	int	i;
+	int	is_prev_separator;
 
 	res = 1;
 	i = 0;
+	is_prev_separator = 0;
 	while (s[i])
 	{
 		if (s[i] == c)
-			res++;
+		{
+			if (!is_prev_separator)
+			{
+				res++;
+				is_prev_separator = 0;
+			}
+			is_prev_separator = 1;
+		}
 		i++;
 	}
 	return (res);
@@ -36,19 +45,26 @@ static void	fill_words(char **buffer, char const *s, char c)
 	int	word_counter;
 	int	start;
 	int	end;
-	
+	int	is_prev_separator;
+
 	i = 0;
 	word_counter = 0;
 	start = 0;
 	end = 0;
+	is_prev_separator = 0;
 	while (s[i])
 	{
 		if (s[i] == c)
 		{
-			end = i;
-			buffer[word_counter] = ft_strdup(ft_substr(s, start, end));
-			word_counter++;
-			start = i;
+			if (!is_prev_separator)
+			{
+				end = i;
+				buffer[word_counter] = ft_strdup(ft_substr(s, start, end));
+				word_counter++;
+				start = i;
+				is_prev_separator = 0;
+			}
+			is_prev_separator = 1;
 		}
 		i++;
 	}

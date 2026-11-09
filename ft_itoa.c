@@ -6,7 +6,7 @@
 /*   By: tdefeche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/06 12:22:59 by tdefeche          #+#    #+#             */
-/*   Updated: 2026/11/06 13:17:16 by tdefeche         ###   ########.fr       */
+/*   Updated: 2026/11/09 09:37:40 by tdefeche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static int	get_nb_size(int n)
 	int	nb_size;
 
 	nb_size = 0;
+	if (n == 0)
+		return (1);
 	if (n < 0)
 	{
 		n *= -1;
