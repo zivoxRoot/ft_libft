@@ -16,10 +16,17 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	if (n == 0)
+	long	number;
+	char	temp;
+
+	number = (long)n;
+	if (number < 0)
 	{
-		ft_putchar_fd('0', fd);
-		return;
+		number *= -1;
+		write(fd, "-", 1);
 	}
-	ft_putstr_fd(ft_itoa(n), fd);
+	temp = number % 10 + 48;
+	if (number > 9)
+		ft_putnbr_fd((int)(number /= 10), fd);
+	write(fd, &temp, 1);
 }
