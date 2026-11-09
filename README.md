@@ -134,25 +134,25 @@ cc -Wall -Wextra -Werror -g main.c -L. -lft -lbsd -o test
 
 ## Resources
 
-    AI was used to make sure I correctly understood new concepts I (re)learned, and to verify each edge case was correctly taken into account.
-    It was used especially for `memmove`, `split`, and `substr`. All code is written by me.
+AI was used to make sure I correctly understood new concepts I (re)learned, and to verify each edge case was correctly taken into account.
+It was used especially for `memmove`, `split`, and `substr`. All code is written by me.
 
-    An unsorted list of useful websites and articles
-    - [Makefile explanation & example](https://linuxvox.com/blog/makefile-linux-c-example)
-            - [Creating a static library in C](https://www.geeksforgeeks.org/c/how-do-i-create-a-library-in-c)
-                - [Documentation on standard functions & examples of usage](https://koor.fr/C/cstring/memmove.wp) (useful for testing)
+An unsorted list of useful websites and articles
+- [Makefile explanation & example](https://linuxvox.com/blog/makefile-linux-c-example)
+- [Creating a static library in C](https://www.geeksforgeeks.org/c/how-do-i-create-a-library-in-c)
+- [Documentation on standard functions & examples of usage](https://koor.fr/C/cstring/memmove.wp) (useful for testing)
 
 ## Testing
 
-                    You can easily test this library by copying the following `main.c` and following the instructions in the [instructions section](#instructions).
+You can easily test this library by copying the following `main.c` and following the instructions in the [instructions section](#instructions).
 
-                    >[!NOTE]
-                    > This test file is big and ugly but should be understandable and can be easily edited to test different edge cases
+>[!NOTE]
+> This test file is big and ugly but should be understandable and can be easily edited to test different edge cases
 
-                    <details>
-                    <summary><code>main.c</code></summary>
+<details>
+<summary><code>main.c</code></summary>
 
-                    ```c
+```c
 #include <stdio.h>
 #include <string.h>
 #include <bsd/string.h>
