@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-
 #include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
@@ -33,15 +31,3 @@ char	*ft_strrchr(const char *s, int c)
 		return ((char *)&s[index]);
 	return (NULL);
 }
-
-// #include <stdio.h>
-// #include <string.h>
-// int	main(void)
-// {
-// 	const char	*str = "Hello everybody";
-// 	char		target = 'e';
-// 
-// 	printf("Target string: %s\n\n", str);
-// 	printf("Original's last appearance of character %c: %s\n", target, strrchr(str, target));
-// 	printf("Mine's last appearance of character %c: %s\n", target, ft_strrchr(str, target));
-// }

@@ -15,16 +15,6 @@
 int	ft_tolower(int c)
 {
 	if (c > 64 && c < 91)
-	{
 		return (c + 32);
-	}
 	return (c);
 }
-
-// #include <stdio.h>
-// int	main(void)
-// {
-// 	printf("%c\n", tolower('x'));
-// 	printf("%c\n", tolower('A'));
-// 	printf("%c\n", tolower('1'));
-// }

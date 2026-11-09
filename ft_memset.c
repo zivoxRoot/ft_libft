@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-
 #include "libft.h"
 
 void	*ft_memset(void *s, int c, size_t n)
@@ -29,29 +27,3 @@ void	*ft_memset(void *s, int c, size_t n)
 	}
 	return (s);
 }
-
-// #include <stdio.h>
-// int	main(void)
-// {
-// 	int		array[] = { 54, 85, 20, 63, 21 };
-// 	size_t	size = sizeof(int) * 5;
-// 	int		length;
-// 
-// 	length = 0;
-// 	while (length < 5)
-// 	{
-// 		printf("%d ", array[length]);
-// 		length++;
-// 	}
-// 	printf("\n");
-// 
-// 	ft_memset(array, 0, size);
-// 
-// 	length = 0;
-// 	while (length < 5)
-// 	{
-// 		printf("%d ", array[length]);
-// 		length++;
-// 	}
-// 	printf("\n");
-// }

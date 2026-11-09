@@ -16,15 +16,8 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, 1);
-}
+	size_t	ret;
 
-// int	main(void)
-// {
-// 	ft_putchar_fd('S', 1);
-// 	ft_putchar_fd('a', 1);
-// 	ft_putchar_fd('l', 1);
-// 	ft_putchar_fd('u', 1);
-// 	ft_putchar_fd('t', 1);
-// 	ft_putchar_fd('\n', 1);
-// }
+	ret = write(fd, &c, 1);
+	(void)ret;
+}

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stddef.h>
 
 #include "libft.h"
 
@@ -36,11 +35,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	res[y] = '\0';
 	return (res);
 }
-
-// #include <stdio.h>
-// int	main(void)
-// {
-// 	char *const str = "Salut tout le monde";
-// 	printf("Original: %s\n", str);
-// 	printf("Substring: %s\n", ft_substr(str, 6, 4));
-// }

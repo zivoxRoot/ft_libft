@@ -3,8 +3,69 @@
 #include <bsd/string.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "libft.h"
+
+// NOTE: Used by strmapi & striteri
+void	my_function(unsigned int n, char *c)
+{
+	if (n % 2 == 0)
+	{
+		if (*c > 96 && *c < 123)
+			*c -= 32;
+		else if (*c > 64 && *c < 91)
+			*c += 32;
+	}
+}
+
+char	my_mapi(unsigned int i, char c)
+{
+	if (n % 2 == 0)
+	{
+		if (c > 96 && c < 123)
+			return (c -= 32);
+		else if (c > 64 && c < 91)
+			return (c += 32);
+	}
+}
+
+// START: linked list related helpers
+
+// Help function that deletes the content of an item
+void deleteContent(void *item)
+{
+	printf("=== DELETING item with value: %s\n", (char *)item);
+}
+
+// Test function for string-based linked-list
+void	ft_printlst(t_list *head)
+{
+	t_list *temp = head;
+	if (temp == NULL)
+	{
+		printf("Empty linked list\n");
+		return ;
+	}
+	while (temp)
+	{
+		printf("%s -> ", (char *)(temp->content));
+		temp = temp->next;
+	}
+	printf("NULL");
+}
+
+// Test function for iteration
+void	uselessFunction(void *item)
+{
+	printf("Someone sent me: %s\n", (char *)item);
+}
+
+void	*myFunction(void *item)
+{
+	return (strdup((char *)item));
+}
+// END: linked list
 
 int	main(void)
 {
@@ -214,7 +275,6 @@ int	main(void)
 		printf("\n");
 
 		ft_bzero(array, size);
-		// TODO: Bugfix it doesn't set the last item to 0
 
 		length = 0;
 		printf("Array after bzero (expec only 0s): ");
@@ -249,8 +309,7 @@ int	main(void)
 		}
 		printf("\n");
 
-		// TODO: bugfix copying doesn't work well
-		printf("\nCOPYING 3 items from first array to second array\n\n");
+		printf("\nCOPYING 3 items from first array to second array (expect 1 2 3 45 56)\n\n");
 		ft_memcpy((void *)array2, (const void *)array1, size);
 
 		length = 0;
@@ -272,7 +331,17 @@ int	main(void)
 	}
 
 	printf("\n=== Testing memmove\n");
-	// TODO: Make this function work and copy it here
+	{
+		char	buf[] = "ABCDEF";
+		ft_memmove(buf + 2, buf, 4);
+		printf("Expected: ABABCD\n");
+		printf("%s\n", buf);
+
+		char	buf2[] = "ABCDEF";
+		ft_memmove(buf2, buf2 + 2, 4);
+		printf("Expected: CDEFEF\n");
+		printf("%s\n", buf2);
+	}
 
 	printf("\n=== Testing memchr\n");
 	{
@@ -317,7 +386,7 @@ int	main(void)
 		}
 
 		// We print the whole array
-		printf("Printing array, expected: 1 to 8 and a 0 at the end\n");
+		printf("Printing array, expected: 0 to 8 and a 0 at the end\n");
 		i = 0;
 		while (i < 10)
 		{
@@ -335,7 +404,8 @@ int	main(void)
 	printf("\n=== Testing atoi\n");
 	{
 		const char	*str = "   +--213+4433";
-		printf("%d\n", ft_atoi(str));
+		printf("Original: %d\n", atoi(str));
+		printf("Mine: %d\n", ft_atoi(str));
 	}
 
 	// Part 2: Additional functions
@@ -345,23 +415,29 @@ int	main(void)
 
 	printf("\n=== Testing substr\n");
 	{
-		char *const str = "Salut tout le monde";
+		char const	*str = "Salut tout le monde";
 		printf("Original: %s\n", str);
-		printf("Substring: %s\n", ft_substr(str, 6, 4));
+		char	*res = ft_substr(str, 6, 4);
+		printf("Substring: %s\n", res);
+		free(res);
 	}
 
 	printf("\n=== Testing strjoin\n");
 	{
 		const char *s1 = "Salut je suis sympa...";
 		const char *s2 = " Et j'aime les pommes";
-		printf("%s\n", ft_strjoin(s1, s2));
+		char	*res = ft_strjoin(s1, s2);
+		printf("Expect: Salut je suis sympa... Et j'aime les pommes\n%s\n", res);
+		free(res);
 	}
 
 	printf("\n=== Testing strtrim\n");
 	{
 		const char	*str = "      2xChaine finale je pense...xx  22";
 		const char	*set = " x2";
-		printf("%s\n", ft_strtrim(str, set));
+		char	*res = ft_strtrim(str, set);
+		printf("%s\n", res);
+		free(res);
 	}
 
 	printf("\n=== Testing split\n");
@@ -370,10 +446,13 @@ int	main(void)
 		char	sep = ',';
 		char	**res;
 		res = ft_split(str, sep);
+		if (res == NULL)
+			return 1;
 		int i = 0;
 		while (res[i])
 		{
 			printf("- %s\n", res[i]);
+			free(res[i]);
 			i++;
 		}
 		free(res);
@@ -382,14 +461,18 @@ int	main(void)
 	printf("\n=== Testing itoa\n");
 	{
 		int	number = -3290390;
-		printf("%s\n", ft_itoa(number));
+		char	*res = ft_itoa(number);
+		printf("%s\n", );
+		free(res);
 	}
 
 	printf("\n=== Testing strmapi\n");
 	{
 		char	*str = "Salut je suis cool";
-		char 	(*f)(unsigned int, char) = my_function;
-		printf("%s\n", ft_strmapi(str, f));
+		char 	(*f)(unsigned int, char) = my_mapi;
+		char	*res = ft_strmapi(str, f);
+		printf("%s\n", res);
+		free(res);
 	}
 
 	printf("\n=== Testing striteri\n");
@@ -424,6 +507,93 @@ int	main(void)
 	{
 		ft_putnbr_fd(4329049, 1);
 		write(1, "\n", 1);
+	}
+	// Part 3: Linked list
+	printf("\n#########################\n");
+	printf("### PART 3: Linked list ###\n");
+	printf("###########################\n");
+
+	{
+		char	*txt = "Salut";
+		void	*value = (void *)txt;
+		t_list	*t = ft_lstnew(value);
+
+		// Print list
+		printf("=== Before adding\n");
+		ft_printlst(t);
+		printf("\n\n");
+
+		// List size
+		printf("List size: %u\n\n", ft_lstsize(t));
+
+		// Last item
+		printf("Last items: ");
+		ft_printlst(ft_lstlast(t));
+		printf("\n\n");
+
+		// Create new item & add it in front
+		char *newTxt = "New item!";
+		value = (void *)newTxt;
+		t_list	*new = ft_lstnew(value);
+		ft_lstadd_front(&t, new);
+
+		// Reprint
+		printf("=== After adding\n");
+		ft_printlst(t);
+		printf("\n\n");
+
+		// List size
+		printf("List size: %u\n\n", ft_lstsize(t));
+
+		// Last item
+		printf("Last items: ");
+		ft_printlst(ft_lstlast(t));
+		printf("\n\n");
+
+		// Create new item & add it in back
+		printf("--- ADDING NEW ITEM AT THE BACK ---\n\n");
+		newTxt = "Should be last item...";
+		value = (void *)newTxt;
+		new = ft_lstnew(value);
+		ft_lstadd_back(&t, new);
+
+		// Reprint
+		printf("=== After adding\n");
+		ft_printlst(t);
+		printf("\n\n");
+
+		// List size
+		printf("List size: %u\n\n", ft_lstsize(t));
+
+		// Last item
+		printf("Last items: ");
+		ft_printlst(ft_lstlast(t));
+		printf("\n\n");
+
+		// Delete last item
+		void	(*del)(void *) = deleteContent;
+
+		// NOTE: either if deleting items, no operations can be performed after because deletion doesn't handle pointers to the deleted item...
+		// printf("--- DELETING LAST ITEM ---\n\n");
+		// ft_lstdelone(new, del);
+
+		// Clears the list
+		// printf("--- CLEARING THE LIST ---\n\n");
+		// ft_lstclear(&t, del);
+
+		// Iterate over a list and launch a function on the items' content
+		// printf("--- ITERATING OVER THE LIST ---\n\n");
+		// void	(*f)(void *) = uselessFunction;
+		// ft_lstiter(t, f);
+
+		// Mapping over a list and launch a function on the items' content
+		printf("--- MAPPING OVER THE LIST ---\n\n");
+		void	*(*f)(void *) = myFunction;
+		t_list	*mapped = ft_lstmap(t, f, del);
+		printf("--- MAPPED OVER ---\n");
+		ft_lstclear(&t, del);
+		ft_printlst(mapped);
+		ft_lstclear(&mapped, free);
 	}
 	return (0);
 }

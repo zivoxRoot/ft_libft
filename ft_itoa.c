@@ -14,21 +14,7 @@
 
 #include "libft.h"
 
-// #include <stdio.h>
-
-// size_t	ft_strlen(const char *s)
-// {
-// 	size_t	i;
-// 
-// 	i = 0;
-// 	while (s[i])
-// 	{
-// 		i++;
-// 	}
-// 	return (i);
-// }
-
-char	*reverse_str(char *s)
+static char	*reverse_str(char *s)
 {
 	char	tmp;
 	int		arrow_left;
@@ -47,7 +33,7 @@ char	*reverse_str(char *s)
 	return (s);
 }
 
-int	get_nb_size(int n)
+static int	get_nb_size(int n)
 {
 	int	nb_size;
 
@@ -65,7 +51,7 @@ int	get_nb_size(int n)
 	return (nb_size);
 }
 
-void	complete(int n, int sign, char *res)
+static void	complete(int n, int sign, char *res)
 {
 	int		i;
 
@@ -105,9 +91,3 @@ char	*ft_itoa(int n)
 	complete(n, sign, res);
 	return (reverse_str(res));
 }
-
-// int	main(void)
-// {
-// 	int	number = -3290390;
-// 	printf("%s\n", ft_itoa(number));
-// }

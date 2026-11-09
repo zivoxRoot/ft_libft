@@ -10,69 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdio.h>
-
 #include "libft.h"
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
+	size_t				i;
 	unsigned char		*d;
 	const unsigned char	*s;
 
 	d = (unsigned char *)dest;
 	s = (const unsigned char *)src;
-	d += n;
-	s += n;
-	while (n > 0)
+	if (d < s)
 	{
-		d--;
-		s--;
-		*d = *s;
-		n--;
+		i = 0;
+		while (i < n)
+		{
+			d[i] = s[i];
+			i++;
+		}
+	}
+	else
+	{
+		i = n;
+		while (i > 0)
+		{
+			i--;
+			d[i] = s[i];
+		}
 	}
 	return (dest);
 }
-
-// #include <string.h>
-// int	main(void)
-// {
-// 	int	data[] = { 20, 30, 40, 50, 60, 70, 80, 90, 100, 0 };
-// 
-// 	// Print the array
-// 	int	i = 0;
-// 	while (i < 10)
-// 	{
-// 		printf("%d ", data[i]);
-// 		i++;
-// 	}
-// 	printf("\n");
-// 
-// 	// printf("DELTE\n");
-// 	// int *data2 = data + 1;
-// 	// i = 0;
-// 	// while (i < 10)
-// 	// {
-// 	// 	printf("%d ", data2[i]);
-// 	// 	i++;
-// 	// }
-// 	// printf("\nDELTE\n");
-// 
-// 	void	*src = (void *)data;
-// 	void	*dst = (void *) (data + 1);  // We shift the destination by one
-// 	size_t	size = 9 * sizeof(int);
-// 	// memmove(dst, src, size);
-// 	ft_memmove(dst, src, size);
-// 
-// 	// We insert a '10' in the first place
-// 	data[0] = 10;
-// 
-// 	// Print the array
-// 	i = 0;
-// 	while (i < 10)
-// 	{
-// 		printf("%d ", data[i]);
-// 		i++;
-// 	}
-// 	printf("\n");
-// }

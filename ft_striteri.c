@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
 #include "libft.h"
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
@@ -25,22 +23,3 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 		i++;
 	}
 }
-
-void	my_function(unsigned int n, char *c)
-{
-	if (n % 2 == 0)
-	{
-		if (*c > 96 && *c < 123)
-			*c -= 32;
-		else if (*c > 64 && *c < 91)
-			*c += 32;
-	}
-}
-
-// int	main(void)
-// {
-// 	char	str[] = "Salut je suis cool";
-// 	void 	(*f)(unsigned int, char*) = my_function;
-// 	ft_striteri(str, f);
-// 	printf("%s\n", str);
-// }

@@ -1,4 +1,4 @@
-*This project has been created as part of 42 curriculum by tdefeche.*
+*This project has been created as part of the 42 curriculum by tdefeche.*
 
 # Libft
 
@@ -111,6 +111,8 @@ cc -Wall -Wextra -Werror -g main.c -L. -lft -lbsd -o test
 - `-lbsd` access to lbsd functions (optional, if needed)
 
 ## Ressources
+
+AI was used to make sure I correctly understood new concepts I (re)leanrned, and to verify each edge case was correctly taken into account.
 
 An unsorted list of useful websites and articles
 - [Makefile explanation & example](https://linuxvox.com/blog/makefile-linux-c-example)

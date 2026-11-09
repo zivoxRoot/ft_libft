@@ -1,17 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tdefeche <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/08 20:21:42 by tdefeche          #+#    #+#             */
+/*   Updated: 2026/11/08 20:43:12 by tdefeche         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 
 #include "libft.h"
-// #include <stddef.h>
-
-// size_t	ft_strlen(const char *s)
-// {
-// 	size_t	i;
-// 
-// 	i = 0;
-// 	while (s[i])
-// 		i++;
-// 	return (i);
-// }
 
 char	*ft_strdup(const char *s)
 {
@@ -29,21 +30,5 @@ char	*ft_strdup(const char *s)
 		res[i] = s[i];
 		i++;
 	}
-	res[i] = '\n';
 	return (res);
 }
-
-// #include <stdio.h>
-// #include <string.h>
-// int	main(void)
-// {
-// 	const char	*str = "Salut je suis le boss";
-// 
-// 	char	*original = strdup(str);
-// 	printf("Original strdup: %s\n", original);
-// 	free(original);
-// 
-// 	char	*mine = ft_strdup(str);
-// 	printf("My own strdup: %s\n", mine);
-// 	free(mine);
-// }

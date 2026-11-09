@@ -14,30 +14,6 @@
 
 #include "libft.h"
 
-// size_t	ft_strlen(const char *s)
-// {
-// 	size_t	i;
-// 
-// 	i = 0;
-// 	while (s[i])
-// 	{
-// 		i++;
-// 	}
-// 	return (i);
-// }
-
-char	my_function(unsigned int n, char c)
-{
-	if (n % 2 == 0)
-	{
-		if (c > 96 && c < 123)
-			return (c - 32);
-		if (c > 64 && c < 91)
-			return (c + 32);
-	}
-	return (c);
-}
-
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	int					str_size;
@@ -54,13 +30,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		res[i] = f(i, s[i]);
 		i++;
 	}
+	res[i] = '\0';
 	return (res);
 }
-
-// #include <stdio.h>
-// int	main(void)
-// {
-// 	char	*str = "Salut je suis cool";
-// 	char 	(*f)(unsigned int, char) = my_function;
-// 	printf("%s\n", ft_strmapi(str, f));
-// }

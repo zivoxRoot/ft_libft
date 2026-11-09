@@ -10,13 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <unistd.h>
-
-// void	ft_putchar_fd(char c, int fd)
-// {
-// 	write(fd, &c, 1);
-// }
-
 #include "libft.h"
 
 void	ft_putstr_fd(char *s, int fd)
@@ -27,8 +20,3 @@ void	ft_putstr_fd(char *s, int fd)
 		s++;
 	}
 }
-
-// int main(void)
-// {
-// 	ft_putstr_fd("Salut comment ca va ?\n", 1);
-// }

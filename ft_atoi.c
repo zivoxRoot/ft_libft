@@ -12,15 +12,6 @@
 
 #include "libft.h"
 
-int	ft_isspace(char c)
-{
-	if (c == ' ' || (c > 8 && c < 14))
-	{
-		return (1);
-	}
-	return (0);
-}
-
 int	ft_atoi(const char *nptr)
 {
 	int	i;
@@ -30,16 +21,12 @@ int	ft_atoi(const char *nptr)
 	i = 0;
 	result = 0;
 	sign = 1;
-	while (ft_isspace(nptr[i]))
-	{
+	while (nptr[i] == ' ' || (nptr[i] > 8 && nptr[i] < 14))
 		i++;
-	}
-	while (nptr[i] == '-' || nptr[i] == '+')
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
 		if (nptr[i] == '-')
-		{
 			sign *= -1;
-		}
 		i++;
 	}
 	while (nptr[i] <= 57 && nptr[i] >= 48)
@@ -49,10 +36,3 @@ int	ft_atoi(const char *nptr)
 	}
 	return (result * sign);
 }
-
-// #include <stdio.h>
-// int	main(void)
-// {
-// 	const char	*str = "   +--213+4433";
-// 	printf("%d\n", ft_atoi(str));
-// }

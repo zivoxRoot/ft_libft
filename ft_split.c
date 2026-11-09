@@ -14,127 +14,52 @@
 
 #include "libft.h"
 
-// char	*ft_substr(char const *s, unsigned int start, size_t len)
-// {
-// 	// Malloc necessary size
-// 	char	*res;
-// 	unsigned int i;
-// 	size_t y;
-// 
-// 	res = (char *)malloc((len + 1) * sizeof(char));
-// 	if (!res)
-// 		return (NULL);
-// 
-// 	// Get to the start of the substring in the string
-// 	i = 0;
-// 	while (i < start)
-// 		i++;
-// 
-// 	// Copy char by char
-// 	y = 0;
-// 	while (y < len)
-// 	{
-// 		res[y] = s[i + y];
-// 		y++;
-// 	}
-// 	res[y] = '\0';
-// 	return (res);
-// }
-// 
-// size_t	get_size(const char *str)
-// {
-// 	size_t	i;
-// 
-// 	i = 0;
-// 	while (str[i])
-// 	{
-// 		i++;
-// 	}
-// 	return (i);
-// }
-// 
-// size_t ft_strlcpy(char *dst, const char *src, size_t size)
-// {
-// 	size_t	i;
-// 	size_t	src_size;
-// 
-// 	i = 0;
-// 	src_size = get_size(src);
-// 	if (size == 0)
-// 		return (src_size);
-// 	while (*src && i < size - 1)
-// 	{
-// 		dst[i] = src[i];
-// 		i++;
-// 	}
-// 	if (*dst)
-// 		dst[i] = '\0';
-// 	return (src_size);
-// }
-// 
-// size_t	ft_strlen(const char *s)
-// {
-// 	size_t	i;
-// 
-// 	i = 0;
-// 	while (s[i])
-// 	{
-// 		i++;
-// 	}
-// 	return (i);
-// }
-
-char	**ft_split(char const *s, char c)
+static int	get_nb_words(char const *s, char c)
 {
-	int		count;
-	int		i;
-	char	**res;
+	int	res;
+	int	i;
 
-	// Get number of substring
-	count = 1;
+	res = 1;
 	i = 0;
 	while (s[i])
 	{
 		if (s[i] == c)
-			count++;
+			res++;
 		i++;
 	}
-	// Malloc it
-	res = (char **)malloc((count + 1) * sizeof(char *));
-	// Malloc each string & copy it
-	i = 0;
-	unsigned int start = 0;
-	unsigned int end = 0;
-	int	cur_count = 0;
-	while (s[i] && cur_count < count)
-	{
-		if (s[i] == c)
-		{
-			res[count] = (char *)malloc((end - start + 1) * sizeof(char));
-			ft_strlcpy(res[count], (const char *)ft_substr(s, start, end), (size_t)(end - start));
-			start = end;
-			count++;
-		}
-		i++;
-		end++;
-	}
-	res[count] = NULL;
 	return (res);
 }
 
-// #include <stdio.h>
-// int	main(void)
-// {
-// 	char	*str = "Salut, je suis, content d'extre la.";
-// 	char	sep = ',';
-// 	char	**res;
-// 
-// 	res = ft_split(str, sep);
-// 	int i = 0;
-// 	while (res[i])
-// 	{
-// 		printf("- %s\n", res[i]);
-// 		i++;
-// 	}
-// 	free(res);
-// }
+static void	fill_words(char **buffer, char const *s, char c)
+{
+	int	i;
+	int	word_counter;
+	int	start;
+	int	end;
+	
+	i = 0;
+	word_counter = 0;
+	start = 0;
+	end = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+		{
+			end = i;
+			buffer[word_counter] = ft_strdup(ft_substr(s, start, end));
+			word_counter++;
+			start = i;
+		}
+		i++;
+	}
+	buffer[word_counter] = NULL;
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**res;
+
+	res = (char **)malloc((get_nb_words(s, c) + 1) * sizeof(char *));
+	fill_words(res, s, c);
+	return (res);
+}

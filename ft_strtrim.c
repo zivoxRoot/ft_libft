@@ -11,49 +11,10 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-// #include <stdio.h>
-// size_t	ft_strlen(const char *s)
-// {
-// 	size_t	i;
-// 
-// 	i = 0;
-// 	while (s[i])
-// 	{
-// 		i++;
-// 	}
-// 	return (i);
-// }
-// 
-// char	*ft_substr(char const *s, unsigned int start, size_t len)
-// {
-// 	// Malloc necessary size
-// 	char	*res;
-// 	unsigned int i;
-// 	size_t y;
-// 
-// 	res = (char *)malloc((len + 1) * sizeof(char));
-// 	if (!res)
-// 		return (NULL);
-// 
-// 	// Get to the start of the substring in the string
-// 	i = 0;
-// 	while (i < start)
-// 		i++;
-// 
-// 	// Copy char by char
-// 	y = 0;
-// 	while (y < len)
-// 	{
-// 		res[y] = s[i + y];
-// 		y++;
-// 	}
-// 	res[y] = '\0';
-// 	return (res);
-// }
 
 #include "libft.h"
 
-int	is_set(char c, char const *set)
+static int	is_set(char c, char const *set)
 {
 	int	set_index;
 
@@ -88,10 +49,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	}
 	return (ft_substr(s1, start, end - start));
 }
-
-// int	main(void)
-// {
-// 	const char	*str = "      2xChaine finale je pense...xx  22";
-// 	const char	*set = " x2";
-// 	printf("%s\n", ft_strtrim(str, set));
-// }

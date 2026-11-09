@@ -15,19 +15,6 @@
 int	ft_isascii(int c)
 {
 	if (c > 127 || c < 0)
-	{
 		return (0);
-	}
 	return (1);
 }
-
-// #include <stdio.h>
-// int	main(void)
-// {
-// 	printf("%d\n", ft_isascii('4'));
-// 	printf("%d\n", ft_isascii('x'));
-// 	printf("%d\n", ft_isascii('o'));
-// 	printf("%d\n", ft_isascii('\n'));
-// 	printf("%d\n", ft_isascii('0'));
-// 	printf("%d\n", ft_isascii(439));
-// }

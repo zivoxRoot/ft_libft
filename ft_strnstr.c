@@ -10,10 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include <stddef.h>
-// #include <stdio.h>
-
 #include "libft.h"
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
@@ -22,6 +18,8 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	size_t	little_i;
 
 	i = 0;
+	if (little[0] == '\0')
+		return ((char *)big);
 	if (little[0] == '\n')
 		return ((char *)big);
 	while (i < len && big[i])
@@ -42,13 +40,3 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (NULL);
 }
-
-// #include <bsd/string.h>
-// int	main(void)
-// {
-// 	const char	*big = "Salut je suis le boss";
-// 	const char	*little = "suis";
-// 
-// 	printf("Original strnstr: %s\n", strnstr(big, little, 30));
-// 	printf("My own strnstr: %s\n", ft_strnstr(big, little, 30));
-// }
