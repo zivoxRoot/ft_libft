@@ -18,16 +18,16 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	size_t	copied_chars;
 
 	dst_size = 0;
-	copied_chars = 0;
-	if (size == 0)
-		return size ;
-	while (dst[dst_size])
+	while (dst_size < size && dst[dst_size])
 		dst_size++;
-	while (copied_chars < size - 1 && src[copied_chars])
+	if (dst_size == size)
+		return (size + ft_strlen(src));
+	copied_chars = 0;
+	while (copied_chars < size - dst_size - 1 && src[copied_chars])
 	{
 		dst[dst_size + copied_chars] = src[copied_chars];
 		copied_chars++;
 	}
-	dst[dst_size + copied_chars] = '\n';
-	return (dst_size + copied_chars);
+	dst[dst_size + copied_chars] = '\0';
+	return (dst_size + ft_strlen(src));
 }

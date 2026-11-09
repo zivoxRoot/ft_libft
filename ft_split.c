@@ -14,68 +14,79 @@
 
 #include "libft.h"
 
-static int	get_nb_words(char const *s, char c)
+static int	get_words_nb(char const *s, char c)
 {
-	int	res;
 	int	i;
+	int	words_nb;
 	int	is_prev_separator;
 
-	res = 1;
 	i = 0;
-	is_prev_separator = 0;
+	words_nb = 0;
+	is_prev_separator = 1;
 	while (s[i])
 	{
+		if (s[i] != c && is_prev_separator)
+			words_nb++;
 		if (s[i] == c)
-		{
-			if (!is_prev_separator)
-			{
-				res++;
-				is_prev_separator = 0;
-			}
 			is_prev_separator = 1;
-		}
+		else
+			is_prev_separator = 0;
 		i++;
 	}
-	return (res);
+	return (words_nb);
 }
 
-static void	fill_words(char **buffer, char const *s, char c)
+static void	free_all(char **res, int n)
 {
 	int	i;
-	int	word_counter;
-	int	start;
-	int	end;
-	int	is_prev_separator;
 
 	i = 0;
-	word_counter = 0;
-	start = 0;
-	end = 0;
-	is_prev_separator = 0;
-	while (s[i])
+	while (i < n)
 	{
-		if (s[i] == c)
-		{
-			if (!is_prev_separator)
-			{
-				end = i;
-				buffer[word_counter] = ft_strdup(ft_substr(s, start, end));
-				word_counter++;
-				start = i;
-				is_prev_separator = 0;
-			}
-			is_prev_separator = 1;
-		}
+		free(res[i]);
 		i++;
 	}
-	buffer[word_counter] = NULL;
+	free(res);
+}
+
+static int	fill_words(char **res, char const *s, char c)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	while (*s)
+	{
+		while (*s == c)
+			s++;
+		if (!*s)
+			break ;
+		len = 0;
+		while (s[len] && s[len] != c)
+			len++;
+		res[i] = ft_substr(s, 0, len);
+		if (!res[i])
+		{
+			free_all(res, i);
+			return (0);
+		}
+		i++;
+		s += len;
+	}
+	res[i] = NULL;
+	return (1);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**res;
 
-	res = (char **)malloc((get_nb_words(s, c) + 1) * sizeof(char *));
-	fill_words(res, s, c);
+	if (!s)
+		return (NULL);
+	res = (char **)malloc((get_words_nb(s, c) + 1) * sizeof(char *));
+	if (!res)
+		return (NULL);
+	if (!fill_words(res, s, c))
+		return (NULL);
 	return (res);
 }
