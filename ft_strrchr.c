@@ -18,16 +18,16 @@ char	*ft_strrchr(const char *s, int c)
 	int	last_appearance_index;
 
 	index = 0;
-	last_appearance_index = 0;
-	while (s[index])
+	last_appearance_index = -1;
+	while (true)
 	{
-		if (s[index] == c)
+		if (s[index] == (char)c)
 			last_appearance_index = index;
+		if (s[index] == '\0')
+			break ;
 		index++;
 	}
-	if (last_appearance_index != 0)
+	if (last_appearance_index != -1)
 		return ((char *)&s[last_appearance_index]);
-	if (c == '\n' && s[index] == '\n')
-		return ((char *)&s[index]);
 	return (NULL);
 }
