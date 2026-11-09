@@ -33,7 +33,7 @@ static char	*reverse_str(char *s)
 	return (s);
 }
 
-static int	get_nb_size(int n)
+static int	get_nb_size(long n)
 {
 	int	nb_size;
 
@@ -53,11 +53,17 @@ static int	get_nb_size(int n)
 	return (nb_size);
 }
 
-static void	complete(int n, int sign, char *res)
+static void	complete(long n, int sign, char *res)
 {
 	int		i;
 
 	i = 0;
+	if (n == 0)
+	{
+		res[0] = '0';
+		res[1] = '\0';
+		return ;
+	}
 	while (n > 0)
 	{
 		res[i] = (n % 10) + 48;
@@ -77,19 +83,19 @@ char	*ft_itoa(int n)
 	int		nb_size;
 	char	*res;
 	int		sign;
+	long	number;
 
 	sign = 1;
-	if (n == -2147483648)
-		return ("-2147483648");
-	nb_size = get_nb_size(n);
-	if (n < 0)
+	number = (long)n;
+	nb_size = get_nb_size(number);
+	if (number < 0)
 	{
 		sign = -1;
-		n = -n;
+		number = -number;
 	}
 	res = (char *)malloc((nb_size + 1) * sizeof(char));
 	if (!res)
 		return (NULL);
-	complete(n, sign, res);
+	complete(number, sign, res);
 	return (reverse_str(res));
 }
