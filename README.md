@@ -183,6 +183,7 @@ char	my_mapi(unsigned int i, char c)
         else if (c > 64 && c < 91)
             return (c += 32);
     }
+	return (c);
 }
 
 // START: linked list related helpers
