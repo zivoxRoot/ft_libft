@@ -6,7 +6,7 @@
 /*   By: tdefeche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 12:30:53 by tdefeche          #+#    #+#             */
-/*   Updated: 2026/11/04 12:40:10 by tdefeche         ###   ########.fr       */
+/*   Updated: 2026/11/10 09:13:40 by tdefeche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strrchr(const char *s, int c)
 
 	index = 0;
 	last_appearance_index = -1;
-	while (true)
+	while (1 == 1)
 	{
 		if (s[index] == (char)c)
 			last_appearance_index = index;

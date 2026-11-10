@@ -6,7 +6,7 @@
 /*   By: tdefeche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 12:15:10 by tdefeche          #+#    #+#             */
-/*   Updated: 2026/11/04 12:29:23 by tdefeche         ###   ########.fr       */
+/*   Updated: 2026/11/10 09:13:19 by tdefeche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strchr(const char *s, int c)
 	int	index;
 
 	index = 0;
-	while (true)
+	while (1 == 1)
 	{
 		if (s[index] == (char)c)
 			return ((char *)&(s[index]));
