@@ -123,7 +123,7 @@ int	main(void)
 ```
 
 ```bash
-cc -Wall -Wextra -Werror -g main.c -L. -lft -lbsd -o test
+cc -Wall -Wextra -Werror -g main.c -L. -lft -lbsd
 ```
 
 - `-Wall -Wextra -Werror`: flags for more/clearer error messages
